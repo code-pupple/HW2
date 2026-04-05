@@ -41,3 +41,30 @@ jobs:
           # GitHub Actions 내부 캐시 시스템 활용 (빌드 속도 대폭 상승)
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy to Self-Hosted Runner
+    # 빌드가 무사히 끝난 뒤에만 실행되도록 종속성 설정
+    needs: docker-build-push
+    # GitHub Runner에 등록한 본인의 데스크톱 컴퓨터 환경에서 동작
+    runs-on: self-hosted
+
+    steps:
+      - name: Docker Hub 로그인 (Rate Limit 제한 방지 및 접근 권한 확보)
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: 최신 Docker 이미지 가져오기
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/emotion-api:latest
+
+      - name: 기존 컨테이너 강제 중지 및 삭제
+        # -f (force) 옵션을 통해 컨테이너가 켜져 있어도 바로 끄고 삭제합니다.
+        run: docker rm -f emotion-api
+        # 만약 최초 실행이라 컨테이너가 아예 없더라도, 파이프라인 에러를 내뿜지 않고 그냥 넘어가게 합니다.
+        continue-on-error: true
+
+      - name: 새로운 모델 서버 컨테이너 띄우기
+        # 백그라운드(-d)로 띄워서 내 컴퓨터 콘솔창이 먹통이 되지 않고 계속 돌게 합니다.
+        run: docker run -d --name emotion-api -p 8000:8000 ${{ secrets.DOCKERHUB_USERNAME }}/emotion-api:latest
