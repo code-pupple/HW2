@@ -13,7 +13,7 @@ WORKDIR /app
 # 필수 시스템 패키지 설치 및 캐시 클리어 (이미지 크기 최소화)
 # --no-install-recommends: 명시된 패키지만 설치하여 불필요한 의존성 배제
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
