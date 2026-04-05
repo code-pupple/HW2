@@ -124,6 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         dominantEmotionText.textContent = data.dominant_emotion;
         
+        const genderText = document.getElementById('dominantGenderText');
+        if (genderText && data.dominant_gender) {
+            // Include confidence percentage if we have gender_probabilities
+            const genderConf = data.gender_probabilities[data.dominant_gender];
+            const confText = genderConf ? ` (${genderConf.toFixed(1)}%)` : '';
+            genderText.textContent = data.dominant_gender + confText;
+        }
+
         // Clear previous bars
         emotionBarsContainer.innerHTML = '';
 

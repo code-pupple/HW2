@@ -28,26 +28,30 @@ async def predict_emotion(file: UploadFile = File(...)):
         if img is None:
             raise ValueError("이미지를 읽을 수 없거나 데이터가 손상되었습니다.")
 
-        # DeepFace를 활용한 감정 분석
-        # 첫 실행 시 모델 가중치(weights)를 자동으로 ~/.deepface 에 다운로드합니다.
-        # enforce_detection=False는 얼굴이 부분적으로 보이거나 작을 때 에러를 피하기 위해 설정
-        result = DeepFace.analyze(img_path=img, actions=['emotion'], enforce_detection=False)
+        # DeepFace를 활용한 감정 및 성별 분석
+        result = DeepFace.analyze(img_path=img, actions=['emotion', 'gender'], enforce_detection=False)
         
         # 결과가 여러 얼굴을 찾은 경우 (리스트 형태), 메인 얼굴 하나를 선택
         if isinstance(result, list):
             result = result[0]
             
         dominant_emotion = result.get('dominant_emotion', 'unknown')
+        dominant_gender = result.get('dominant_gender', 'unknown')
         
         # FastAPI(jsonable_encoder)는 내부적으로 numpy.float32를 직렬화하지 못하므로 일반 float로 변환
         raw_emotions = result.get('emotion', {})
         emotion_probabilities = {k: float(v) for k, v in raw_emotions.items()}
 
+        raw_genders = result.get('gender', {})
+        gender_probabilities = {k: float(v) for k, v in raw_genders.items()}
+
         return {
             "filename": file.filename,
             "status": "success",
             "dominant_emotion": dominant_emotion,
-            "emotion_probabilities": emotion_probabilities
+            "emotion_probabilities": emotion_probabilities,
+            "dominant_gender": dominant_gender,
+            "gender_probabilities": gender_probabilities
         }
 
     except Exception as e:
