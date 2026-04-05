@@ -10,13 +10,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# 필수 시스템 패키지 설치 및 캐시 클리어 (이미지 크기 최소화)
-# --no-install-recommends: 명시된 패키지만 설치하여 불필요한 의존성 배제
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1 \
-    libglib2.0-0 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# opencv-python-headless 패키지를 사용하므로, 
+# 별도의 OS 그래픽 라이브러리(libgl1 등)는 설치할 필요가 없습니다.
 
 # 루트(Root) 권한 실행 방지를 위한 비권한 유저 생성 (보안 모범 사례 적용)
 RUN useradd -m appuser
