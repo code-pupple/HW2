@@ -1,0 +1,10 @@
+# 웹 프레임워크 및 서버 구동
+fastapi>=0.100.0
+uvicorn>=0.23.0
+python-multipart>=0.0.6
+
+# 이미지 처리 및 ML 모델
+deepface>=0.0.80
+opencv-python-headless>=4.8.0
+numpy>=1.24.0
+tensorflow-cpu>=2.13.0 # 가벼운 CPU 추론용

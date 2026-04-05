@@ -1,0 +1,44 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'HW2/**'
+      - '.github/workflows/ci.yml'
+  workflow_dispatch:
+
+jobs:
+  docker-build-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 깃허브 코드 체크아웃
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Docker 빌드 캐시 최적화를 위한 Buildx 셋업 구성
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # 3. Docker Hub 로그인 (GitHub Secrets 활용)
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 4. 이미지 빌드 및 푸시
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./HW2
+          file: ./HW2/Dockerfile
+          push: true
+          # Docker Hub의 레포지토리 네임스페이스와 태그를 동적으로 구성
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/emotion-api:latest
+          
+          # GitHub Actions 내부 캐시 시스템 활용 (빌드 속도 대폭 상승)
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
