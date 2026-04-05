@@ -8,10 +8,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     DEBIAN_FRONTEND=noninteractive
 
-WORKDIR /app
+# OpenCV 종속성 시스템 라이브러리 추가 (Deepface등의 라이브러리가 기본 opencv를 의존성으로 가질 수 있음)
+RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# opencv-python-headless 패키지를 사용하므로, 
-# 별도의 OS 그래픽 라이브러리(libgl1 등)는 설치할 필요가 없습니다.
+WORKDIR /app
 
 # 루트(Root) 권한 실행 방지를 위한 비권한 유저 생성 (보안 모범 사례 적용)
 RUN useradd -m appuser
