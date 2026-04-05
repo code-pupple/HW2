@@ -38,7 +38,10 @@ async def predict_emotion(file: UploadFile = File(...)):
             result = result[0]
             
         dominant_emotion = result.get('dominant_emotion', 'unknown')
-        emotion_probabilities = result.get('emotion', {})
+        
+        # FastAPI(jsonable_encoder)는 내부적으로 numpy.float32를 직렬화하지 못하므로 일반 float로 변환
+        raw_emotions = result.get('emotion', {})
+        emotion_probabilities = {k: float(v) for k, v in raw_emotions.items()}
 
         return {
             "filename": file.filename,
