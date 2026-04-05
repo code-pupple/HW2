@@ -28,9 +28,9 @@ USER appuser
 # 작업 디렉토리에 전체 코드 복사 (소유권을 appuser로 지정)
 COPY --chown=appuser:appuser . .
 
-# DeepFace 감정 모델 가중치(weights)를 도커 빌드 시점에 미리 다운로드 
-# 서버가 프로덕션에 첫 배포되었을 때 응답이 지연되는 콜드스타트 현상 방지
-RUN python -c "from deepface import DeepFace; DeepFace.build_model('Emotion')"
+# (참고: 빌드 시점의 모델 사전 다운로드는 GitHub Actions(Ubuntu)의 
+# 가상 환경과 TensorFlow 충돌 버그가 있어 제거했습니다. 
+# 대신 서버 구동 후 첫 번째 Predict 요청 시 자동으로 가중치가 다운로드됩니다.)
 
 EXPOSE 8000
 
