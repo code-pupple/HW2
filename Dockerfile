@@ -9,7 +9,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     DEBIAN_FRONTEND=noninteractive
 
 # OpenCV 종속성 시스템 라이브러리 추가 (Deepface등의 라이브러리가 기본 opencv를 의존성으로 가질 수 있음)
-RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0 && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libgl1 libglib2.0-0 && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
