@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion AI Explorer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-face-smile-wink"></i>
+                <h1>Emotion AI Explorer</h1>
+            </div>
+            <p>Upload a portrait to reveal the underlying emotions inside.</p>
+        </header>
+
+        <section class="glass-card upload-section" id="uploadCard">
+            <div class="drop-zone" id="dropZone">
+                <i class="fa-solid fa-cloud-arrow-up drop-icon"></i>
+                <p>Drag & Drop an image here</p>
+                <p class="sub-text">or</p>
+                <button class="btn primary-btn" id="browseBtn">Browse Files</button>
+                <input type="file" id="fileInput" accept="image/png, image/jpeg, image/jpg" hidden>
+            </div>
+        </section>
+
+        <section class="results-grid hidden" id="resultsSection">
+            <div class="glass-card preview-card">
+                <h2>Uploaded Image</h2>
+                <div class="image-preview-wrapper">
+                    <img id="imagePreview" src="" alt="Preview">
+                </div>
+                <button class="btn secondary-btn" id="resetBtn"><i class="fa-solid fa-arrow-rotate-left"></i> Try Another</button>
+            </div>
+
+            <div class="glass-card analysis-card">
+                <h2>Analysis Results</h2>
+                
+                <div class="dominant-emotion">
+                    <span class="label">Dominant Emotion</span>
+                    <h3 id="dominantEmotionText" class="gradient-text">Analyzing...</h3>
+                </div>
+
+                <div class="emotion-bars" id="emotionBars">
+                    <!-- Progress bars injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay hidden" id="loadingOverlay">
+            <div class="spinner"></div>
+            <p>Analyzing facial expressions...</p>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

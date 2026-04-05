@@ -1,9 +1,10 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import uvicorn
 import cv2
 import numpy as np
 from deepface import DeepFace
-
 app = FastAPI(
     title="Emotion Recognition API", 
     description="가벼운 얼굴 인식 및 감정 예측 API 서버 (MLOps 파이프라인용)"
@@ -49,12 +50,13 @@ async def predict_emotion(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"이미지 분석 중 오류가 발생했습니다: {str(e)}")
 
+# 정적 파일들을 서빙하기 위한 마운트 (CSS, JS 등)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 @app.get("/")
-def health_check():
-    return {
-        "status": "healthy", 
-        "message": "서버가 정상적으로 작동 중입니다. API 문서는 /docs 에서 확인하세요."
-    }
+def read_index():
+    # 사용자가 접속 시 멋진 UI가 담긴 index.html을 반환
+    return FileResponse("static/index.html")
 
 if __name__ == "__main__":
     # 로컬 개발/디버깅을 위한 서버 실행
