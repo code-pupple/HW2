@@ -1,13 +1,12 @@
-name: CI to Docker Hub
+name: CI/CD Pipeline
 
-# 액션 실행 트리거 속성 설정
 on:
   push:
     branches:
       - main
-    # paths 필터를 제거하여 루트 레포지토리의 어떤 파일이든 변경되면 작동하도록 수정했습니다.
 
 jobs:
+  # 1. 도커 이미지 빌드 및 푸시 (GitHub가 제공하는 클라우드 서버에서 실행)
   build-and-push:
     name: Build & Push Docker Image
     runs-on: ubuntu-latest
@@ -28,9 +27,36 @@ jobs:
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: . # 현재 디렉토리가 루트이므로 상대경로(.)로 수정
-          file: ./Dockerfile # 파일 위치도 상대경로로 수정
+          context: .
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:buildcache
           cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:buildcache,mode=max
+
+  # 2. 로컬 컴퓨터(서버) 자동 배포 (내 컴퓨터의 셀프 호스티드 러너에서 실행)
+  deploy:
+    name: Deploy to Local Machine
+    needs: build-and-push # 위 빌드 작업이 먼저 '성공'해야만 배포를 시작합니다.
+    runs-on: self-hosted  # GitHub Runner로 등록한 내 컴퓨터를 뜻합니다.
+    
+    steps:
+      - name: Pull Latest Docker Image
+        # 도커 허브에서 방금 완성된 최신의 이미지를 내 컴퓨터로 다운로드 받습니다.
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest
+
+      - name: Stop Existing Container
+        # 돌아가고 있는 기존 API 컨테이너를 중단합니다.
+        # 처음 배포하여 기존 컨테이너가 없을 때 나는 에러를 무시하고 다음 단계로 진행하게 합니다.
+        continue-on-error: true
+        run: docker stop mushroom-container
+
+      - name: Remove Existing Container
+        # 멈춘 기존 컨테이너를 삭제하여 찌꺼기를 없앱니다.
+        continue-on-error: true
+        run: docker rm mushroom-container
+
+      - name: Run New Container
+        # 방금 다운로드한 따끈따끈한 최신 이미지로 새 컨테이너를 백그라운드(-d)에서 실행합니다.
+        # --restart unless-stopped 속성으로 로컬 컴퓨터가 오류나 재부팅으로 꺼져도 도커가 켜지면 자동 복구되게 했습니다.
+        run: docker run -d -p 8000:8000 --name mushroom-container --restart unless-stopped ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest

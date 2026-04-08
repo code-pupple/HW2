@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 2,
+  "agentName": "BOOK-9FSJ2ASDII",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus9.actions.githubusercontent.com/sKdK8aGHyTh5jHY7ld3HBfy38oTehX7WVyd1n3mTMJkKRxyoaZ/",
+  "gitHubUrl": "https://github.com/code-pupple/HW2",
+  "workFolder": "_work",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}
