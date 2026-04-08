@@ -64,6 +64,5 @@ jobs:
         run: docker rm mushroom-container
 
       - name: Run New Container
-        # 방금 다운로드한 따끈따끈한 최신 이미지로 새 컨테이너를 백그라운드(-d)에서 실행합니다.
-        # --restart unless-stopped 속성으로 로컬 컴퓨터가 오류나 재부팅으로 꺼져도 도커가 켜지면 자동 복구되게 했습니다.
-        run: docker run -d -p 8000:8000 --name mushroom-container --restart unless-stopped ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest
+        # 이전 프로젝트(emotion-api)가 이미 8000번 포트를 점유 중이므로, 버섯 API는 8080 포트를 사용합니다.
+        run: docker run -d -p 8080:8000 --name mushroom-container --restart unless-stopped ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest
