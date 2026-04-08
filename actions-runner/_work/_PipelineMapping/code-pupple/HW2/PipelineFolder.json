@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "code-pupple/HW2",
+  "pipelineDirectory": "HW2",
+  "workspaceDirectory": "HW2\\HW2",
+  "repositories": {
+    "code-pupple/HW2": {
+      "repositoryPath": "HW2\\HW2",
+      "lastRunOn": "04/08/2026 15:02:53 +09:00"
+    }
+  },
+  "lastRunOn": "04/08/2026 15:07:48 +09:00"
+}

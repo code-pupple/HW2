@@ -41,6 +41,13 @@ jobs:
     runs-on: self-hosted  # GitHub Runner로 등록한 내 컴퓨터를 뜻합니다.
     
     steps:
+      - name: Login to Docker Hub
+        # 셀프 호스티드 러너(로컬 컴퓨터)에서도 Docker Hub 인증이 필요합니다.
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Pull Latest Docker Image
         # 도커 허브에서 방금 완성된 최신의 이미지를 내 컴퓨터로 다운로드 받습니다.
         run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest
