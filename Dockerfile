@@ -1,37 +1,47 @@
-# 파이썬 3.10 슬림 이미지 (경량형 베이스 이미지 사용)
+# ---------------------------------------------------------
+# 배포와 보안이 최적화된 Dockerfile (Production Ready)
+# ---------------------------------------------------------
 FROM python:3.10-slim
 
-# 컨테이너 내 환경 변수 최적화
-# PYTHONDONTWRITEBYTECODE: 파이썬이 .pyc 파일을 생성하지 않도록 하여 용량 절약
-# PYTHONUNBUFFERED: 로그가 버퍼링 없이 즉시 출력되도록 설정 (로깅 모니터링에 유리)
+# 환경 변수 설정
+# PYTHONDONTWRITEBYTECODE: 파이썬이 .pyc 파일을 생성하지 않게 하여 공간 절약
+# PYTHONUNBUFFERED: 파이썬 로그가 버퍼링 없이 즉시 터미널에 출력되게 하여 컨테이너 로그 추적 용이
+# TF_CPP_MIN_LOG_LEVEL: 텐서플로우 불필요한 경고 메시지 방지
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    DEBIAN_FRONTEND=noninteractive
+    TF_CPP_MIN_LOG_LEVEL=2
 
-# OpenCV 종속성 시스템 라이브러리 추가 (Deepface등의 라이브러리가 기본 opencv를 의존성으로 가질 수 있음)
-RUN apt-get update && apt-get install -y libgl1 libglib2.0-0 && apt-get clean && rm -rf /var/lib/apt/lists/*
+# 권한 분리: 루트(root)로 컨테이너가 실행되는 것을 방지하기 위한 유저 생성
+RUN adduser --disabled-password --gecos '' appuser
 
 WORKDIR /app
 
-# 루트(Root) 권한 실행 방지를 위한 비권한 유저 생성 (보안 모범 사례 적용)
-RUN useradd -m appuser
+# 시스템 의존성 설치 밑 패키지 캐시 즉시 제거 (도커 이미지 레이어 크기 축소 핵심)
+# --no-install-recommends 로 불필요한 부가 패키지 설치 차단
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
-# 패키지 요구사항 목록만 먼저 복사하여 레이어 캐싱 활용 (코드가 변경되어도 패키지 재설치를 피함)
+# 의존성 파일(requirements.txt)만 먼저 복사
+# 이유: 소스 코드가 변경되더라도 의존성이 변경되지 않으면 이 밑의 레이어는 캐시를 재사용 (빌드 속도 최적화)
 COPY requirements.txt .
 
-# pip 패키지 설치 (--no-cache-dir 로 캐시가 이미지 용량을 차지하는 것을 방지)
-RUN pip install --no-cache-dir -r requirements.txt
+# 파이썬 패키지 설치
+# --no-cache-dir 옵션으로 pip 로컬 임시 캐시를 남기지 않음
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# 어플리케이션 계정으로 전환
+# 애플리케이션 소스 코드 복사
+COPY . .
+
+# 보안: 앱 디렉토리의 소유권을 새로 만든 비권한 사용자로 변경
+RUN chown -R appuser:appuser /app
+
+# 생성한 비권한 계정으로 사용자 전환
 USER appuser
-
-# 작업 디렉토리에 전체 코드 복사 (소유권을 appuser로 지정)
-COPY --chown=appuser:appuser . .
-
-# (참고: 빌드 시점의 모델 사전 다운로드는 GitHub Actions(Ubuntu)의 
-# 가상 환경과 TensorFlow 충돌 버그가 있어 제거했습니다. 
-# 대신 서버 구동 후 첫 번째 Predict 요청 시 자동으로 가중치가 다운로드됩니다.)
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# 컨테이너 실행 명령어 명시 (작업자 1개 설정 - MLOps 리소스 제어 시)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]

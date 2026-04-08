@@ -1,70 +1,45 @@
-name: Build and Push Docker Image
+name: CI to Docker Hub
 
+# 액션 실행 트리거 속성 설정
+# Github 저장소의 main 브랜치에 코드가 push(업데이트)될 때 작동
 on:
   push:
     branches:
       - main
+    # HW2 폴더에 변경사항이 있을 때만 빌드 동작 (효율성 극대화)
     paths:
-      - '**'
-  workflow_dispatch:
+      - 'HW2/**'
 
 jobs:
-  docker-build-push:
-    runs-on: ubuntu-latest
-
+  build-and-push:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest # 깃허브가 제공하는 우분투 환경 컨테이너 위에서 실행
+    
     steps:
-      # 1. 깃허브 코드 체크아웃
-      - name: Checkout repository
+      # 1. 깃허브 저장소의 내 코드 불러오기
+      - name: Checkout Source Code
         uses: actions/checkout@v4
-
-      # 2. Docker 빌드 캐시 최적화를 위한 Buildx 셋업 구성
+        
+      # 2. 고급 도커 빌드 툴(Buildx) 세팅: 레이어 캐싱 및 다중 아키텍처 빌드 기능 제공
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 3. Docker Hub 로그인 (GitHub Secrets 활용)
-      - name: Log in to Docker Hub
+      # 3. Docker Hub 로그인 (보안 정보는 Github Secrets을 이용해 주입)
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 4. 이미지 빌드 및 푸시
-      - name: Build and push Docker image
+      # 4. 도커 이미지 빌드 및 푸시 (GitHub Actions 도커 캐시 기능 활용으로 빌드 시간 대폭 단축)
+      - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
         with:
-          context: ./
-          file: ./Dockerfile
+          context: ./HW2 # Dockerfile이 위치한 경로를 지정
+          file: ./HW2/Dockerfile
           push: true
-          # Docker Hub의 레포지토리 네임스페이스와 태그를 동적으로 구성
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/emotion-api:latest
-          
-          # GitHub Actions 내부 캐시 시스템 활용 (빌드 속도 대폭 상승)
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-  deploy:
-    name: Deploy to Self-Hosted Runner
-    # 빌드가 무사히 끝난 뒤에만 실행되도록 종속성 설정
-    needs: docker-build-push
-    # GitHub Runner에 등록한 본인의 데스크톱 컴퓨터 환경에서 동작
-    runs-on: self-hosted
-
-    steps:
-      - name: Docker Hub 로그인 (Rate Limit 제한 방지 및 접근 권한 확보)
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: 최신 Docker 이미지 가져오기
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/emotion-api:latest
-
-      - name: 기존 컨테이너 강제 중지 및 삭제
-        # -f (force) 옵션을 통해 컨테이너가 켜져 있어도 바로 끄고 삭제합니다.
-        run: docker rm -f emotion-api
-        # 만약 최초 실행이라 컨테이너가 아예 없더라도, 파이프라인 에러를 내뿜지 않고 그냥 넘어가게 합니다.
-        continue-on-error: true
-
-      - name: 새로운 모델 서버 컨테이너 띄우기
-        # 백그라운드(-d)로 띄워서 내 컴퓨터 콘솔창이 먹통이 되지 않고 계속 돌게 합니다.
-        run: docker run -d --name emotion-api -p 8000:8000 ${{ secrets.DOCKERHUB_USERNAME }}/emotion-api:latest
+          # 레지스트리에 저장될 태그 이름
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:latest
+          # 도커 레이어 캐싱 설정: 이후 동일한 파일 재빌드 시 속도가 매우 빨라집니다.
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/mushroom-api:buildcache,mode=max

@@ -1,70 +1,62 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-import uvicorn
-import cv2
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import JSONResponse
+import tensorflow as tf
 import numpy as np
-from deepface import DeepFace
+from PIL import Image
+import io
+
 app = FastAPI(
-    title="Emotion Recognition API", 
-    description="가벼운 얼굴 인식 및 감정 예측 API 서버 (MLOps 파이프라인용)"
+    title="Mushroom Recognition API", 
+    description="가벼운 모델(MobileNetV2)을 활용한 버섯 이미지 분류 API"
 )
 
-@app.post("/predict")
-async def predict_emotion(file: UploadFile = File(...)):
-    """
-    이미지 파일을 업로드하면 얼굴을 인식하고 감정을 예측합니다.
-    """
-    # 파일 확장자 검사
-    if not file.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-        raise HTTPException(status_code=400, detail="이미지 파일(.png, .jpg, .jpeg)만 지원합니다.")
+# 모델 로드: MLOps 파이프라인에서 실제 학습된 버섯 전용 모델(.h5, .keras 또는 SavedModel)로 교체 예정
+# 데모 및 개발 환경 테스트를 위해 ImageNet으로 사전 학습된 가벼운 모델인 MobileNetV2를 예시로 사용합니다.
+model = tf.keras.applications.MobileNetV2(weights='imagenet')
+decode_predictions = tf.keras.applications.mobilenet_v2.decode_predictions
+preprocess_input = tf.keras.applications.mobilenet_v2.preprocess_input
 
+def process_image(image_bytes: bytes):
+    # 이미지 열기 및 RGB 변환
+    image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    # MobileNetV2 입력 크기에 맞게 리사이징 (224x224)
+    image = image.resize((224, 224))
+    image_array = np.array(image)
+    image_array = np.expand_dims(image_array, axis=0)
+    # 모델에 맞는 전처리 (Scaling)
+    return preprocess_input(image_array)
+
+@app.post("/predict", summary="버섯 이미지 인식 및 예측")
+async def predict_mushroom(file: UploadFile = File(...)):
+    """
+    버섯 이미지를 업로드받아 어떤 종류(또는 가장 유사한 객체)인지 예측합니다.
+    """
     try:
-        # 업로드된 이미지를 메모리에서 읽어 OpenCV 형식으로 변환
         contents = await file.read()
-        nparr = np.frombuffer(contents, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-
-        if img is None:
-            raise ValueError("이미지를 읽을 수 없거나 데이터가 손상되었습니다.")
-
-        # DeepFace를 활용한 감정 및 성별 분석
-        result = DeepFace.analyze(img_path=img, actions=['emotion', 'gender'], enforce_detection=False)
+        processed_img = process_image(contents)
         
-        # 결과가 여러 얼굴을 찾은 경우 (리스트 형태), 메인 얼굴 하나를 선택
-        if isinstance(result, list):
-            result = result[0]
-            
-        dominant_emotion = result.get('dominant_emotion', 'unknown')
-        dominant_gender = result.get('dominant_gender', 'unknown')
+        # 모델 예측 수행
+        preds = model.predict(processed_img)
+        # 상위 3개의 예측 결과 디코딩
+        results = decode_predictions(preds, top=3)[0] 
         
-        # FastAPI(jsonable_encoder)는 내부적으로 numpy.float32를 직렬화하지 못하므로 일반 float로 변환
-        raw_emotions = result.get('emotion', {})
-        emotion_probabilities = {k: float(v) for k, v in raw_emotions.items()}
-
-        raw_genders = result.get('gender', {})
-        gender_probabilities = {k: float(v) for k, v in raw_genders.items()}
-
+        predictions = [{"label": label, "probability": round(float(prob), 4)} for (_, label, prob) in results]
+        best_match = predictions[0]["label"]
+        
         return {
-            "filename": file.filename,
             "status": "success",
-            "dominant_emotion": dominant_emotion,
-            "emotion_probabilities": emotion_probabilities,
-            "dominant_gender": dominant_gender,
-            "gender_probabilities": gender_probabilities
+            "filename": file.filename,
+            "predicted_label": best_match,
+            "confidence": predictions[0]["probability"],
+            "top_predictions": predictions
         }
-
+        
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"이미지 분석 중 오류가 발생했습니다: {str(e)}")
+        return JSONResponse(status_code=500, content={"status": "error", "message": f"이미지 처리 중 오류가 발생했습니다: {str(e)}"})
 
-# 정적 파일들을 서빙하기 위한 마운트 (CSS, JS 등)
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-@app.get("/")
-def read_index():
-    # 사용자가 접속 시 멋진 UI가 담긴 index.html을 반환
-    return FileResponse("static/index.html")
-
-if __name__ == "__main__":
-    # 로컬 개발/디버깅을 위한 서버 실행
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+@app.get("/", summary="헬스체크 API")
+def health_check():
+    return {
+        "status": "ok", 
+        "message": "버섯 인식 API 서버가 정상적으로 실행 중입니다."
+    }

@@ -1,11 +1,6 @@
-# 웹 프레임워크 및 서버 구동
 fastapi>=0.100.0
 uvicorn>=0.23.0
 python-multipart>=0.0.6
-
-# 이미지 처리 및 ML 모델
-deepface>=0.0.80
-opencv-python-headless>=4.8.0
-numpy>=1.24.0
-tensorflow-cpu>=2.13.0 # 가벼운 CPU 추론용
-tf-keras>=2.16.0 # 텐서플로우 최신 버전에 따른 deepface(retinaface) 의존성 문제 해결용
+tensorflow>=2.13.0
+Pillow>=10.0.0
+numpy>=1.24.3
