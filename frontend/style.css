@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 세련된 다크 테마 배경 */
+    background: linear-gradient(135deg, #0f1115 0%, #171b22 100%);
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 생동감 넘치는 배경 Blob 애니메이션 (Glassmorphism에 빛 효과 제공) */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: 0;
+}
+
+body::before {
+    width: 400px;
+    height: 400px;
+    background: rgba(46, 204, 113, 0.2);
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    width: 300px;
+    height: 300px;
+    background: rgba(52, 152, 219, 0.2);
+    bottom: -50px;
+    right: -50px;
+}
+
+.glass-container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 550px;
+    /* 글래스모피즘 코어 속성 */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 50px 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.glass-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 35px 60px rgba(0, 0, 0, 0.4);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 34px;
+    font-weight: 600;
+    /* 눈부신 텍스트 그라데이션 */
+    background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: #8fa3b0;
+    font-size: 14px;
+}
+
+.upload-zone {
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 50px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.upload-zone:hover, .upload-zone.dragover {
+    border-color: #2ecc71;
+    background: rgba(46, 204, 113, 0.08);
+}
+
+.upload-icon {
+    color: #8fa3b0;
+    margin-bottom: 16px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.upload-zone:hover .upload-icon {
+    color: #2ecc71;
+    transform: translateY(-5px);
+}
+
+.upload-zone h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.upload-zone p {
+    font-size: 13px;
+    color: #8fa3b0;
+}
+
+.preview-area {
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+#imagePreview {
+    max-width: 100%;
+    max-height: 250px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    object-fit: cover;
+}
+
+.btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.loading-area {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.spinner {
+    width: 44px;
+    height: 44px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #2ecc71;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.result-area {
+    margin-top: 30px;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    text-align: center;
+    animation: slideUp 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.result-subtitle {
+    font-size: 12px;
+    color: #8fa3b0;
+    margin-bottom: 6px;
+}
+
+#resultTitle {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2ecc71;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
+
+.confidence-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2ecc71, #27ae60);
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+.confidence-text {
+    font-size: 13px;
+    color: #8fa3b0;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }

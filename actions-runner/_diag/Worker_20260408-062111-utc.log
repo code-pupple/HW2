@@ -1,0 +1,2833 @@
+[2026-04-08 06:21:11Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.credentials'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'Runner': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.runner'
+[2026-04-08 06:21:11Z INFO Worker] Version: 2.333.1
+[2026-04-08 06:21:11Z INFO Worker] Commit: 6792966801e8925346735b68c03bf9f347af4646
+[2026-04-08 06:21:11Z INFO Worker] Culture: ko-KR
+[2026-04-08 06:21:11Z INFO Worker] UI Culture: ko-KR
+[2026-04-08 06:21:11Z INFO Worker] Waiting to receive the job message from the channel.
+[2026-04-08 06:21:11Z INFO ProcessChannel] Receiving message of length 21650, with hash '0eff14451f8f85a193b3c94e696ffb5f001e871e9f68505f561143b532378f9b'
+[2026-04-08 06:21:11Z INFO Worker] Message received.
+[2026-04-08 06:21:11Z INFO Worker] Job message:
+ {
+  "fileTable": [
+    ".github/workflows/ci.yml"
+  ],
+  "mask": [
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    },
+    {
+      "type": "regex",
+      "value": "***"
+    }
+  ],
+  "steps": [
+    {
+      "type": "action",
+      "reference": {
+        "type": "repository",
+        "name": "docker/login-action",
+        "ref": "v3",
+        "repositoryType": "GitHub"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 44,
+        "col": 15,
+        "lit": "Login to Docker Hub"
+      },
+      "contextName": "__docker_login-action",
+      "inputs": {
+        "type": 2,
+        "file": 1,
+        "line": 48,
+        "col": 11,
+        "map": [
+          {
+            "key": {
+              "type": 0,
+              "file": 1,
+              "line": 48,
+              "col": 11,
+              "lit": "username"
+            },
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 48,
+              "col": 21,
+              "expr": "secrets.DOCKERHUB_USERNAME"
+            }
+          },
+          {
+            "key": {
+              "type": 0,
+              "file": 1,
+              "line": 49,
+              "col": 11,
+              "lit": "password"
+            },
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 49,
+              "col": 21,
+              "expr": "secrets.DOCKERHUB_TOKEN"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "58aaba5e-64ee-4e0f-9b90-2c0a4288ac5c",
+      "name": "__docker_login-action"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 51,
+        "col": 15,
+        "lit": "Pull Latest Docker Image"
+      },
+      "contextName": "__run",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 53,
+              "col": 14,
+              "expr": "format('docker pull {0}/mushroom-api:latest', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "5d6ae1e0-3b77-47a0-ae13-e9f800f7572e",
+      "name": "__run"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 55,
+        "col": 15,
+        "lit": "Stop Existing Container"
+      },
+      "contextName": "__run_2",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 59,
+              "col": 14,
+              "lit": "docker stop mushroom-container"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "continueOnError": {
+        "type": 5,
+        "file": 1,
+        "line": 58,
+        "col": 28,
+        "bool": true
+      },
+      "id": "93371c68-5483-4dc2-9270-e62f61b800ff",
+      "name": "__run_2"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 61,
+        "col": 15,
+        "lit": "Remove Existing Container"
+      },
+      "contextName": "__run_3",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 0,
+              "file": 1,
+              "line": 64,
+              "col": 14,
+              "lit": "docker rm mushroom-container"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "continueOnError": {
+        "type": 5,
+        "file": 1,
+        "line": 63,
+        "col": 28,
+        "bool": true
+      },
+      "id": "fcd62955-6045-48e3-b10c-9d4b8c6843c6",
+      "name": "__run_3"
+    },
+    {
+      "type": "action",
+      "reference": {
+        "type": "script"
+      },
+      "displayNameToken": {
+        "type": 0,
+        "file": 1,
+        "line": 66,
+        "col": 15,
+        "lit": "Run New Container"
+      },
+      "contextName": "__run_4",
+      "inputs": {
+        "type": 2,
+        "map": [
+          {
+            "key": "script",
+            "value": {
+              "type": 3,
+              "file": 1,
+              "line": 68,
+              "col": 14,
+              "expr": "format('docker run -d -p 8080:8000 --name mushroom-container --restart unless-stopped {0}/mushroom-api:latest', secrets.DOCKERHUB_USERNAME)"
+            }
+          }
+        ]
+      },
+      "condition": "success()",
+      "id": "88d2023c-0822-4e6f-a814-ff37a5b7436d",
+      "name": "__run_4"
+    }
+  ],
+  "variables": {
+    "Actions.EnableHttpRedirects": {
+      "value": "true"
+    },
+    "DOCKERHUB_TOKEN": {
+      "value": "***",
+      "isSecret": true
+    },
+    "DOCKERHUB_USERNAME": {
+      "value": "***",
+      "isSecret": true
+    },
+    "DistributedTask.AddWarningToNode12Action": {
+      "value": "true"
+    },
+    "DistributedTask.AddWarningToNode16Action": {
+      "value": "true"
+    },
+    "DistributedTask.AllowRunnerContainerHooks": {
+      "value": "true"
+    },
+    "DistributedTask.DeprecateStepOutputCommands": {
+      "value": "true"
+    },
+    "DistributedTask.DetailUntarFailure": {
+      "value": "true"
+    },
+    "DistributedTask.EnableCompositeActions": {
+      "value": "true"
+    },
+    "DistributedTask.EnableJobServerQueueTelemetry": {
+      "value": "true"
+    },
+    "DistributedTask.EnhancedAnnotations": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode16": {
+      "value": "true"
+    },
+    "DistributedTask.ForceGithubJavascriptActionsToNode20": {
+      "value": "true"
+    },
+    "DistributedTask.LogTemplateErrorsAsDebugMessages": {
+      "value": "true"
+    },
+    "DistributedTask.MarkJobAsFailedOnWorkerCrash": {
+      "value": "true"
+    },
+    "DistributedTask.NewActionMetadata": {
+      "value": "true"
+    },
+    "DistributedTask.UploadStepSummary": {
+      "value": "true"
+    },
+    "DistributedTask.UseActionArchiveCache": {
+      "value": "true"
+    },
+    "DistributedTask.UseWhich2": {
+      "value": "true"
+    },
+    "RunService.FixEmbeddedIssues": {
+      "value": "true"
+    },
+    "actions.runner.requirenode24": {
+      "value": "false"
+    },
+    "actions.runner.usenode24bydefault": {
+      "value": "false"
+    },
+    "actions.runner.warnonnode20": {
+      "value": "true"
+    },
+    "actions_add_check_run_id_to_job_context": {
+      "value": "true"
+    },
+    "actions_batch_action_resolution": {
+      "value": "false"
+    },
+    "actions_container_action_runner_temp": {
+      "value": "true"
+    },
+    "actions_display_helpful_actions_download_errors": {
+      "value": "true"
+    },
+    "actions_runner_compare_workflow_parser": {
+      "value": "false"
+    },
+    "actions_runner_deprecate_linux_arm32": {
+      "value": "false"
+    },
+    "actions_runner_emit_composite_markers": {
+      "value": "false"
+    },
+    "actions_runner_kill_linux_arm32": {
+      "value": "false"
+    },
+    "actions_runner_node20_removal_date": {
+      "value": ""
+    },
+    "actions_runner_node24_default_date": {
+      "value": ""
+    },
+    "actions_service_container_command": {
+      "value": "true"
+    },
+    "actions_set_orchestration_id_env_for_actions": {
+      "value": "true"
+    },
+    "actions_skip_retry_complete_job_upon_known_errors": {
+      "value": "true"
+    },
+    "actions_snapshot_preflight_hosted_runner_check": {
+      "value": "false"
+    },
+    "actions_snapshot_preflight_image_gen_pool_check": {
+      "value": "false"
+    },
+    "actions_use_bearer_token_for_codeload": {
+      "value": "false"
+    },
+    "actions_uses_cache_service_v2": {
+      "value": "true"
+    },
+    "github_token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.from_run_service": {
+      "value": "true"
+    },
+    "system.github.job": {
+      "value": "deploy"
+    },
+    "system.github.launch_endpoint": {
+      "value": "https://launch.actions.githubusercontent.com"
+    },
+    "system.github.results_endpoint": {
+      "value": "https://results-receiver.actions.githubusercontent.com/"
+    },
+    "system.github.results_upload_with_sdk": {
+      "value": "true"
+    },
+    "system.github.token": {
+      "value": "***",
+      "isSecret": true
+    },
+    "system.github.token.permissions": {
+      "value": "{\"Contents\":\"read\",\"Metadata\":\"read\",\"Packages\":\"read\"}"
+    },
+    "system.orchestrationId": {
+      "value": "67ee15c8-a312-41ba-ba40-db4908e76e88.deploy.__default"
+    },
+    "system.phaseDisplayName": {
+      "value": "Deploy to Local Machine"
+    },
+    "system.runner.lowdiskspacethreshold": {
+      "value": "100"
+    },
+    "system.runnerEnvironment": {
+      "value": "self-hosted"
+    },
+    "system.runnerGroupName": {
+      "value": "Default"
+    }
+  },
+  "messageType": "RunnerJobRequest",
+  "plan": {
+    "scopeIdentifier": "00000000-0000-0000-0000-000000000000",
+    "planType": "actions",
+    "version": 0,
+    "planId": "67ee15c8-a312-41ba-ba40-db4908e76e88",
+    "planGroup": null,
+    "artifactUri": null,
+    "artifactLocation": null,
+    "definition": null,
+    "owner": null
+  },
+  "timeline": {
+    "id": "67ee15c8-a312-41ba-ba40-db4908e76e88",
+    "changeId": 0,
+    "location": null
+  },
+  "jobId": "065412f9-b3bd-5418-bbec-e1ff97640e4a",
+  "jobDisplayName": "Deploy to Local Machine",
+  "jobName": "__default",
+  "requestId": 0,
+  "lockedUntil": "0001-01-01T00:00:00",
+  "resources": {
+    "endpoints": [
+      {
+        "data": {
+          "ServerId": "",
+          "ServerName": "",
+          "CacheServerUrl": "https://artifactcache.actions.githubusercontent.com/sKdK8aGHyTh5jHY7ld3HBfy38oTehX7WVyd1n3mTMJkKRxyoaZ/",
+          "FeedStreamUrl": "wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock",
+          "ResultsServiceUrl": "https://results-receiver.actions.githubusercontent.com/",
+          "PipelinesServiceUrl": "https://pipelinesghubeus9.actions.githubusercontent.com/sKdK8aGHyTh5jHY7ld3HBfy38oTehX7WVyd1n3mTMJkKRxyoaZ/",
+          "GenerateIdTokenUrl": "",
+          "ConnectivityChecks": "[\"https://broker.actions.githubusercontent.com/health\",\"https://token.actions.githubusercontent.com/ready\",\"https://run.actions.githubusercontent.com/health\"]"
+        },
+        "name": "SystemVssConnection",
+        "url": "https://run-actions-1-azure-eastus.actions.githubusercontent.com/186/",
+        "authorization": {
+          "parameters": {
+            "AccessToken": "***"
+          },
+          "scheme": "OAuth"
+        },
+        "isShared": false,
+        "isReady": true
+      }
+    ]
+  },
+  "contextData": {
+    "github": {
+      "t": 2,
+      "d": [
+        {
+          "k": "ref",
+          "v": "refs/heads/main"
+        },
+        {
+          "k": "sha",
+          "v": "73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+        },
+        {
+          "k": "repository",
+          "v": "code-pupple/HW2"
+        },
+        {
+          "k": "repository_owner",
+          "v": "code-pupple"
+        },
+        {
+          "k": "repository_owner_id",
+          "v": "223435940"
+        },
+        {
+          "k": "repositoryUrl",
+          "v": "git://github.com/code-pupple/HW2.git"
+        },
+        {
+          "k": "run_id",
+          "v": "24121053982"
+        },
+        {
+          "k": "run_number",
+          "v": "5"
+        },
+        {
+          "k": "retention_days",
+          "v": "90"
+        },
+        {
+          "k": "run_attempt",
+          "v": "1"
+        },
+        {
+          "k": "artifact_cache_size_limit",
+          "v": "10"
+        },
+        {
+          "k": "repository_visibility",
+          "v": "public"
+        },
+        {
+          "k": "actor_id",
+          "v": "223435940"
+        },
+        {
+          "k": "actor",
+          "v": "code-pupple"
+        },
+        {
+          "k": "workflow",
+          "v": "CI/CD Pipeline"
+        },
+        {
+          "k": "head_ref",
+          "v": ""
+        },
+        {
+          "k": "base_ref",
+          "v": ""
+        },
+        {
+          "k": "event_name",
+          "v": "push"
+        },
+        {
+          "k": "server_url",
+          "v": "https://github.com"
+        },
+        {
+          "k": "api_url",
+          "v": "https://api.github.com"
+        },
+        {
+          "k": "graphql_url",
+          "v": "https://api.github.com/graphql"
+        },
+        {
+          "k": "ref_name",
+          "v": "main"
+        },
+        {
+          "k": "ref_protected",
+          "v": false
+        },
+        {
+          "k": "ref_type",
+          "v": "branch"
+        },
+        {
+          "k": "secret_source",
+          "v": "Actions"
+        },
+        {
+          "k": "event",
+          "v": {
+            "t": 2,
+            "d": [
+              {
+                "k": "after",
+                "v": "73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+              },
+              {
+                "k": "base_ref",
+                "v": null
+              },
+              {
+                "k": "before",
+                "v": "9869ce98a60142adaf7ca3a0c5a630a7eec934a8"
+              },
+              {
+                "k": "commits",
+                "v": {
+                  "t": 1,
+                  "a": [
+                    {
+                      "t": 2,
+                      "d": [
+                        {
+                          "k": "author",
+                          "v": {
+                            "t": 2,
+                            "d": [
+                              {
+                                "k": "email",
+                                "v": "mapletree1017@naver.com"
+                              },
+                              {
+                                "k": "name",
+                                "v": "Bmumyung"
+                              },
+                              {
+                                "k": "username",
+                                "v": "Bmumyung"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "committer",
+                          "v": {
+                            "t": 2,
+                            "d": [
+                              {
+                                "k": "email",
+                                "v": "mapletree1017@naver.com"
+                              },
+                              {
+                                "k": "name",
+                                "v": "Bmumyung"
+                              },
+                              {
+                                "k": "username",
+                                "v": "Bmumyung"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "k": "distinct",
+                          "v": true
+                        },
+                        {
+                          "k": "id",
+                          "v": "73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+                        },
+                        {
+                          "k": "message",
+                          "v": "fix: emotion-api와의 포트 충돌 방지를 위해 배포 포트를 8080으로 변경"
+                        },
+                        {
+                          "k": "timestamp",
+                          "v": "2026-04-08T15:19:24+09:00"
+                        },
+                        {
+                          "k": "tree_id",
+                          "v": "b9337be1cef79f921b80589b5ee2fc1d1cdfa885"
+                        },
+                        {
+                          "k": "url",
+                          "v": "https://github.com/code-pupple/HW2/commit/73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "compare",
+                "v": "https://github.com/code-pupple/HW2/compare/9869ce98a601...73ccbf8a2f3c"
+              },
+              {
+                "k": "created",
+                "v": false
+              },
+              {
+                "k": "deleted",
+                "v": false
+              },
+              {
+                "k": "forced",
+                "v": false
+              },
+              {
+                "k": "head_commit",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "author",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "email",
+                            "v": "mapletree1017@naver.com"
+                          },
+                          {
+                            "k": "name",
+                            "v": "Bmumyung"
+                          },
+                          {
+                            "k": "username",
+                            "v": "Bmumyung"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "committer",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "email",
+                            "v": "mapletree1017@naver.com"
+                          },
+                          {
+                            "k": "name",
+                            "v": "Bmumyung"
+                          },
+                          {
+                            "k": "username",
+                            "v": "Bmumyung"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "distinct",
+                      "v": true
+                    },
+                    {
+                      "k": "id",
+                      "v": "73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+                    },
+                    {
+                      "k": "message",
+                      "v": "fix: emotion-api와의 포트 충돌 방지를 위해 배포 포트를 8080으로 변경"
+                    },
+                    {
+                      "k": "timestamp",
+                      "v": "2026-04-08T15:19:24+09:00"
+                    },
+                    {
+                      "k": "tree_id",
+                      "v": "b9337be1cef79f921b80589b5ee2fc1d1cdfa885"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://github.com/code-pupple/HW2/commit/73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "pusher",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "email",
+                      "v": "mapletree061017@gmail.com"
+                    },
+                    {
+                      "k": "name",
+                      "v": "code-pupple"
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "ref",
+                "v": "refs/heads/main"
+              },
+              {
+                "k": "repository",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "allow_forking",
+                      "v": true
+                    },
+                    {
+                      "k": "archive_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/{archive_format}{/ref}"
+                    },
+                    {
+                      "k": "archived",
+                      "v": false
+                    },
+                    {
+                      "k": "assignees_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/assignees{/user}"
+                    },
+                    {
+                      "k": "blobs_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/git/blobs{/sha}"
+                    },
+                    {
+                      "k": "branches_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/branches{/branch}"
+                    },
+                    {
+                      "k": "clone_url",
+                      "v": "https://github.com/code-pupple/HW2.git"
+                    },
+                    {
+                      "k": "collaborators_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/collaborators{/collaborator}"
+                    },
+                    {
+                      "k": "comments_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/comments{/number}"
+                    },
+                    {
+                      "k": "commits_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/commits{/sha}"
+                    },
+                    {
+                      "k": "compare_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/compare/{base}...{head}"
+                    },
+                    {
+                      "k": "contents_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/contents/{+path}"
+                    },
+                    {
+                      "k": "contributors_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/contributors"
+                    },
+                    {
+                      "k": "created_at",
+                      "v": 1775621601.0
+                    },
+                    {
+                      "k": "default_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "deployments_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/deployments"
+                    },
+                    {
+                      "k": "description",
+                      "v": null
+                    },
+                    {
+                      "k": "disabled",
+                      "v": false
+                    },
+                    {
+                      "k": "downloads_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/downloads"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/events"
+                    },
+                    {
+                      "k": "fork",
+                      "v": false
+                    },
+                    {
+                      "k": "forks",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "forks_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/forks"
+                    },
+                    {
+                      "k": "full_name",
+                      "v": "code-pupple/HW2"
+                    },
+                    {
+                      "k": "git_commits_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/git/commits{/sha}"
+                    },
+                    {
+                      "k": "git_refs_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/git/refs{/sha}"
+                    },
+                    {
+                      "k": "git_tags_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/git/tags{/sha}"
+                    },
+                    {
+                      "k": "git_url",
+                      "v": "git://github.com/code-pupple/HW2.git"
+                    },
+                    {
+                      "k": "has_discussions",
+                      "v": false
+                    },
+                    {
+                      "k": "has_downloads",
+                      "v": true
+                    },
+                    {
+                      "k": "has_issues",
+                      "v": true
+                    },
+                    {
+                      "k": "has_pages",
+                      "v": false
+                    },
+                    {
+                      "k": "has_projects",
+                      "v": true
+                    },
+                    {
+                      "k": "has_pull_requests",
+                      "v": true
+                    },
+                    {
+                      "k": "has_wiki",
+                      "v": true
+                    },
+                    {
+                      "k": "homepage",
+                      "v": null
+                    },
+                    {
+                      "k": "hooks_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/hooks"
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/code-pupple/HW2"
+                    },
+                    {
+                      "k": "id",
+                      "v": 1204500146.0
+                    },
+                    {
+                      "k": "is_template",
+                      "v": false
+                    },
+                    {
+                      "k": "issue_comment_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/issues/comments{/number}"
+                    },
+                    {
+                      "k": "issue_events_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/issues/events{/number}"
+                    },
+                    {
+                      "k": "issues_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/issues{/number}"
+                    },
+                    {
+                      "k": "keys_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/keys{/key_id}"
+                    },
+                    {
+                      "k": "labels_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/labels{/name}"
+                    },
+                    {
+                      "k": "language",
+                      "v": "JavaScript"
+                    },
+                    {
+                      "k": "languages_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/languages"
+                    },
+                    {
+                      "k": "license",
+                      "v": null
+                    },
+                    {
+                      "k": "master_branch",
+                      "v": "main"
+                    },
+                    {
+                      "k": "merges_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/merges"
+                    },
+                    {
+                      "k": "milestones_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/milestones{/number}"
+                    },
+                    {
+                      "k": "mirror_url",
+                      "v": null
+                    },
+                    {
+                      "k": "name",
+                      "v": "HW2"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "R_kgDOR8s2sg"
+                    },
+                    {
+                      "k": "notifications_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/notifications{?since,all,participating}"
+                    },
+                    {
+                      "k": "open_issues",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "open_issues_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "owner",
+                      "v": {
+                        "t": 2,
+                        "d": [
+                          {
+                            "k": "avatar_url",
+                            "v": "https://avatars.githubusercontent.com/u/223435940?v=4"
+                          },
+                          {
+                            "k": "email",
+                            "v": "mapletree061017@gmail.com"
+                          },
+                          {
+                            "k": "events_url",
+                            "v": "https://api.github.com/users/code-pupple/events{/privacy}"
+                          },
+                          {
+                            "k": "followers_url",
+                            "v": "https://api.github.com/users/code-pupple/followers"
+                          },
+                          {
+                            "k": "following_url",
+                            "v": "https://api.github.com/users/code-pupple/following{/other_user}"
+                          },
+                          {
+                            "k": "gists_url",
+                            "v": "https://api.github.com/users/code-pupple/gists{/gist_id}"
+                          },
+                          {
+                            "k": "gravatar_id",
+                            "v": ""
+                          },
+                          {
+                            "k": "html_url",
+                            "v": "https://github.com/code-pupple"
+                          },
+                          {
+                            "k": "id",
+                            "v": 223435940.0
+                          },
+                          {
+                            "k": "login",
+                            "v": "code-pupple"
+                          },
+                          {
+                            "k": "name",
+                            "v": "code-pupple"
+                          },
+                          {
+                            "k": "node_id",
+                            "v": "U_kgDODVFcpA"
+                          },
+                          {
+                            "k": "organizations_url",
+                            "v": "https://api.github.com/users/code-pupple/orgs"
+                          },
+                          {
+                            "k": "received_events_url",
+                            "v": "https://api.github.com/users/code-pupple/received_events"
+                          },
+                          {
+                            "k": "repos_url",
+                            "v": "https://api.github.com/users/code-pupple/repos"
+                          },
+                          {
+                            "k": "site_admin",
+                            "v": false
+                          },
+                          {
+                            "k": "starred_url",
+                            "v": "https://api.github.com/users/code-pupple/starred{/owner}{/repo}"
+                          },
+                          {
+                            "k": "subscriptions_url",
+                            "v": "https://api.github.com/users/code-pupple/subscriptions"
+                          },
+                          {
+                            "k": "type",
+                            "v": "User"
+                          },
+                          {
+                            "k": "url",
+                            "v": "https://api.github.com/users/code-pupple"
+                          },
+                          {
+                            "k": "user_view_type",
+                            "v": "public"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "k": "private",
+                      "v": false
+                    },
+                    {
+                      "k": "pull_request_creation_policy",
+                      "v": "all"
+                    },
+                    {
+                      "k": "pulls_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/pulls{/number}"
+                    },
+                    {
+                      "k": "pushed_at",
+                      "v": 1775629169.0
+                    },
+                    {
+                      "k": "releases_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/releases{/id}"
+                    },
+                    {
+                      "k": "size",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "ssh_url",
+                      "v": "git@github.com:code-pupple/HW2.git"
+                    },
+                    {
+                      "k": "stargazers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "stargazers_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/stargazers"
+                    },
+                    {
+                      "k": "statuses_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/statuses/{sha}"
+                    },
+                    {
+                      "k": "subscribers_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/subscribers"
+                    },
+                    {
+                      "k": "subscription_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/subscription"
+                    },
+                    {
+                      "k": "svn_url",
+                      "v": "https://github.com/code-pupple/HW2"
+                    },
+                    {
+                      "k": "tags_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/tags"
+                    },
+                    {
+                      "k": "teams_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/teams"
+                    },
+                    {
+                      "k": "topics",
+                      "v": {
+                        "t": 1
+                      }
+                    },
+                    {
+                      "k": "trees_url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2/git/trees{/sha}"
+                    },
+                    {
+                      "k": "updated_at",
+                      "v": "2026-04-08T06:09:25Z"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/repos/code-pupple/HW2"
+                    },
+                    {
+                      "k": "visibility",
+                      "v": "public"
+                    },
+                    {
+                      "k": "watchers",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "watchers_count",
+                      "v": 0.0
+                    },
+                    {
+                      "k": "web_commit_signoff_required",
+                      "v": false
+                    }
+                  ]
+                }
+              },
+              {
+                "k": "sender",
+                "v": {
+                  "t": 2,
+                  "d": [
+                    {
+                      "k": "avatar_url",
+                      "v": "https://avatars.githubusercontent.com/u/223435940?v=4"
+                    },
+                    {
+                      "k": "events_url",
+                      "v": "https://api.github.com/users/code-pupple/events{/privacy}"
+                    },
+                    {
+                      "k": "followers_url",
+                      "v": "https://api.github.com/users/code-pupple/followers"
+                    },
+                    {
+                      "k": "following_url",
+                      "v": "https://api.github.com/users/code-pupple/following{/other_user}"
+                    },
+                    {
+                      "k": "gists_url",
+                      "v": "https://api.github.com/users/code-pupple/gists{/gist_id}"
+                    },
+                    {
+                      "k": "gravatar_id",
+                      "v": ""
+                    },
+                    {
+                      "k": "html_url",
+                      "v": "https://github.com/code-pupple"
+                    },
+                    {
+                      "k": "id",
+                      "v": 223435940.0
+                    },
+                    {
+                      "k": "login",
+                      "v": "code-pupple"
+                    },
+                    {
+                      "k": "node_id",
+                      "v": "U_kgDODVFcpA"
+                    },
+                    {
+                      "k": "organizations_url",
+                      "v": "https://api.github.com/users/code-pupple/orgs"
+                    },
+                    {
+                      "k": "received_events_url",
+                      "v": "https://api.github.com/users/code-pupple/received_events"
+                    },
+                    {
+                      "k": "repos_url",
+                      "v": "https://api.github.com/users/code-pupple/repos"
+                    },
+                    {
+                      "k": "site_admin",
+                      "v": false
+                    },
+                    {
+                      "k": "starred_url",
+                      "v": "https://api.github.com/users/code-pupple/starred{/owner}{/repo}"
+                    },
+                    {
+                      "k": "subscriptions_url",
+                      "v": "https://api.github.com/users/code-pupple/subscriptions"
+                    },
+                    {
+                      "k": "type",
+                      "v": "User"
+                    },
+                    {
+                      "k": "url",
+                      "v": "https://api.github.com/users/code-pupple"
+                    },
+                    {
+                      "k": "user_view_type",
+                      "v": "public"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "k": "workflow_ref",
+          "v": "code-pupple/HW2/.github/workflows/ci.yml@refs/heads/main"
+        },
+        {
+          "k": "workflow_sha",
+          "v": "73ccbf8a2f3c3c29778bfc6a0fa29dc464141a34"
+        },
+        {
+          "k": "repository_id",
+          "v": "1204500146"
+        },
+        {
+          "k": "triggering_actor",
+          "v": "code-pupple"
+        }
+      ]
+    },
+    "inputs": {
+      "t": 2
+    },
+    "job": {
+      "t": 2,
+      "d": [
+        {
+          "k": "check_run_id",
+          "v": 70375105971.0
+        }
+      ]
+    },
+    "matrix": null,
+    "needs": {
+      "t": 2,
+      "d": [
+        {
+          "k": "build-and-push",
+          "v": {
+            "t": 2,
+            "d": [
+              {
+                "k": "result",
+                "v": "success"
+              },
+              {
+                "k": "outputs",
+                "v": {
+                  "t": 2
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "strategy": {
+      "t": 2,
+      "d": [
+        {
+          "k": "fail-fast",
+          "v": true
+        },
+        {
+          "k": "job-index",
+          "v": 0.0
+        },
+        {
+          "k": "job-total",
+          "v": 1.0
+        },
+        {
+          "k": "max-parallel",
+          "v": 1.0
+        }
+      ]
+    },
+    "vars": {
+      "t": 2
+    }
+  },
+  "billingOwnerId": "U_kgDODVFcpA"
+}
+[2026-04-08 06:21:11Z INFO JobRunner] Job ID 065412f9-b3bd-5418-bbec-e1ff97640e4a
+[2026-04-08 06:21:11Z INFO ConfigurationStore] currentAssemblyLocation: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin\Runner.Worker.dll
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] binPath: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] RootFolder: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'Runner': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.runner'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] ConfigFilePath: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.runner
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'MigratedRunner': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.runner_migrated'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] MigratedConfigFilePath: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.runner_migrated
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.credentials'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] CredFilePath: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.credentials
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'MigratedCredentials': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.credentials_migrated'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] MigratedCredFilePath: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.credentials_migrated
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'Service': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.service'
+[2026-04-08 06:21:11Z INFO ConfigurationStore] ServiceConfigFilePath: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.service
+[2026-04-08 06:21:11Z INFO ConfigurationStore] Read setting file: 393 chars
+[2026-04-08 06:21:11Z INFO JobRunner] Initializing launch client
+[2026-04-08 06:21:11Z INFO JobServerQueue] Initializing results client
+[2026-04-08 06:21:11Z INFO ResultServer] Creating websocket client ...wss://results-receiver.actions.githubusercontent.com/_ws/ingest.sock
+[2026-04-08 06:21:11Z INFO ResultServer] Attempting to start websocket client with delay 00:00:00.
+[2026-04-08 06:21:11Z INFO JobServerQueue] Start process web console line queue.
+[2026-04-08 06:21:11Z INFO JobServerQueue] Start process file upload queue.
+[2026-04-08 06:21:11Z INFO JobServerQueue] Start results file upload queue.
+[2026-04-08 06:21:11Z INFO JobServerQueue] Starting results-based upload queue...
+[2026-04-08 06:21:11Z INFO JobServerQueue] Start process timeline update queue.
+[2026-04-08 06:21:11Z INFO ExecutionContext] Initializing Job context
+[2026-04-08 06:21:11Z INFO ExecutionContext] Initialize GitHub context
+[2026-04-08 06:21:11Z INFO ExecutionContext] Initialize Env context
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:11Z INFO JobRunner] Starting the job execution context.
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO JobRunner] Validating directory permissions for: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Tools': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_tool'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:21:11Z INFO JobRunner] Getting job extension.
+[2026-04-08 06:21:11Z INFO JobRunner] Initialize job. Getting all job steps.
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'Credentials': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.credentials'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known config file 'SetupInfo': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\.setup_info'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO PipelineDirectoryManager] Loading tracking config if exists: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_PipelineMapping\code-pupple/HW2\PipelineFolder.json
+[2026-04-08 06:21:11Z INFO PipelineDirectoryManager] Updating job run properties.
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO JobExtension] Downloading actions
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:11Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:11Z INFO Worker] Listening for cancel message from the channel.
+[2026-04-08 06:21:11Z INFO Worker] Waiting for the job to complete or for a cancel message from the channel.
+[2026-04-08 06:21:12Z INFO ResultServer] Successfully started websocket client.
+[2026-04-08 06:21:12Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1a055cea-be88-45ec-ba73-75d7822bd9f9', success rate: 1/1.
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:12Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:12Z INFO ActionManager] Save archive 'https://api.github.com/repos/docker/login-action/zipball/c94ce9fb468520275223c153574b00df6fe4bcc9' into C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions\_temp_cde2ff01-bd27-4f68-a89d-d1d5882733ee\da322e45-ecd0-4817-addf-8e33ed2826ef.zip.
+[2026-04-08 06:21:12Z INFO JobServerQueue] Job timeline record has been updated for the first time.
+[2026-04-08 06:21:12Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1a055cea-be88-45ec-ba73-75d7822bd9f9', success rate: 1/1.
+[2026-04-08 06:21:15Z INFO ActionManager] Request URL: https://api.github.com/repos/docker/login-action/zipball/c94ce9fb468520275223c153574b00df6fe4bcc9 X-GitHub-Request-Id: EC1C:13ECDD:ADE9:55EA4:69D5F3D8 Http Status: OK
+[2026-04-08 06:21:15Z INFO ActionManager] Finished getting action repository.
+[2026-04-08 06:21:15Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:15Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:15Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:15Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:15Z INFO ActionManifestManagerLegacy] Load schema file with definitions: [
+  "null",
+  "boolean",
+  "number",
+  "string",
+  "sequence",
+  "mapping",
+  "any",
+  "action-root",
+  "inputs",
+  "input",
+  "outputs",
+  "output-definition",
+  "runs",
+  "container-runs",
+  "container-runs-args",
+  "container-runs-env",
+  "node-runs",
+  "plugin-runs",
+  "composite-runs",
+  "composite-steps",
+  "composite-step",
+  "run-step",
+  "uses-step",
+  "container-runs-context",
+  "output-value",
+  "input-default-context",
+  "non-empty-string",
+  "string-steps-context",
+  "boolean-steps-context",
+  "step-env",
+  "step-if",
+  "step-with"
+]
+[2026-04-08 06:21:16Z INFO ActionManifestManager] Load schema file with definitions: [
+  "null",
+  "boolean",
+  "number",
+  "string",
+  "sequence",
+  "mapping",
+  "any",
+  "action-root",
+  "inputs",
+  "input",
+  "outputs",
+  "output-definition",
+  "runs",
+  "container-runs",
+  "container-runs-args",
+  "container-runs-env",
+  "node-runs",
+  "plugin-runs",
+  "composite-runs",
+  "composite-steps",
+  "composite-step",
+  "run-step",
+  "uses-step",
+  "container-runs-context",
+  "output-value",
+  "input-default-context",
+  "non-empty-string",
+  "string-steps-context",
+  "boolean-steps-context",
+  "step-env",
+  "step-if",
+  "step-with"
+]
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Ignore action property author.
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Ignore action property branding.
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Loaded action.yml file: {
+  "name": "Docker Login",
+  "description": "GitHub Action to login against a Docker registry",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 10,
+          "col": 3,
+          "lit": "registry"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 13,
+          "col": 3,
+          "lit": "username"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 16,
+          "col": 3,
+          "lit": "password"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 19,
+          "col": 3,
+          "lit": "ecr"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 22,
+          "col": 3,
+          "lit": "scope"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "logout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 27,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 29,
+          "col": 3,
+          "lit": "registry-auth"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2026-04-08 06:21:16Z INFO ActionManager] Action node.js file: dist/index.js, no more preparation.
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:16Z INFO ActionManager] Load action that reference repository from 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions\docker\login-action\v3'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Ignore action property author.
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Ignore action property branding.
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Loaded action.yml file: {
+  "name": "Docker Login",
+  "description": "GitHub Action to login against a Docker registry",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 10,
+          "col": 3,
+          "lit": "registry"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 13,
+          "col": 3,
+          "lit": "username"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 16,
+          "col": 3,
+          "lit": "password"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 19,
+          "col": 3,
+          "lit": "ecr"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 22,
+          "col": 3,
+          "lit": "scope"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "logout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 27,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 29,
+          "col": 3,
+          "lit": "registry-auth"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2026-04-08 06:21:16Z INFO ActionManager] Action pre node.js file: N/A.
+[2026-04-08 06:21:16Z INFO ActionManager] Action node.js file: dist/index.js.
+[2026-04-08 06:21:16Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2026-04-08 06:21:16Z INFO JobExtension] Adding .
+[2026-04-08 06:21:16Z INFO JobExtension] Adding .
+[2026-04-08 06:21:16Z INFO JobExtension] Adding .
+[2026-04-08 06:21:16Z INFO JobExtension] Adding .
+[2026-04-08 06:21:16Z INFO JobExtension] Adding .
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO JobExtension] Total accessible running process: 349.
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO JobExtension] Start checking server connectivity.
+[2026-04-08 06:21:16Z INFO JobExtension] Check server connectivity for https://broker.actions.githubusercontent.com/health.
+[2026-04-08 06:21:16Z INFO JobExtension] Check server connectivity for https://token.actions.githubusercontent.com/ready.
+[2026-04-08 06:21:16Z INFO JobExtension] Check server connectivity for https://run.actions.githubusercontent.com/health.
+[2026-04-08 06:21:16Z INFO JobExtension] Start checking service connectivity in background.
+[2026-04-08 06:21:16Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "setup_job",
+  "type": "runner",
+  "stage": "Pre",
+  "stepId": "1a055cea-be88-45ec-ba73-75d7822bd9f9",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 5,
+  "startTime": "2026-04-08T06:21:11.5748808Z",
+  "finishTime": "2026-04-08T06:21:16.0591454Z"
+}.
+[2026-04-08 06:21:16Z INFO JobRunner] Total job steps: 5.
+[2026-04-08 06:21:16Z INFO JobRunner] Run all job steps.
+[2026-04-08 06:21:16Z INFO StepsRunner] Processing step: DisplayName='Login to Docker Hub'
+[2026-04-08 06:21:16Z INFO StepsRunner] Evaluating: success()
+[2026-04-08 06:21:16Z INFO StepsRunner] Result: true
+[2026-04-08 06:21:16Z INFO StepsRunner] Starting the step.
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-08 06:21:16Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] Process started with process id 27256, waiting for process exit.
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] Finished process 27256 with exit code 0, and elapsed time 00:00:00.0538933.
+[2026-04-08 06:21:16Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:16Z INFO ActionManager] Load action that reference repository from 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions\docker\login-action\v3'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Ignore action property author.
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Ignore action property branding.
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Loaded action.yml file: {
+  "name": "Docker Login",
+  "description": "GitHub Action to login against a Docker registry",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 10,
+          "col": 3,
+          "lit": "registry"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 13,
+          "col": 3,
+          "lit": "username"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 16,
+          "col": 3,
+          "lit": "password"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 19,
+          "col": 3,
+          "lit": "ecr"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 22,
+          "col": 3,
+          "lit": "scope"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "logout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 27,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 29,
+          "col": 3,
+          "lit": "registry-auth"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2026-04-08 06:21:16Z INFO ActionManager] Action pre node.js file: N/A.
+[2026-04-08 06:21:16Z INFO ActionManager] Action node.js file: dist/index.js.
+[2026-04-08 06:21:16Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2026-04-08 06:21:16Z INFO ExecutionContext] Reserve record order 7 to 12 for post job actions.
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:21:16Z INFO ExecutionContext] Write event payload to C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:21:16Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathFileCommand, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvFileCommand, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.CreateStepSummaryCommand, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateFileCommand, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputFileCommand, Runner.Worker
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Input 'registry': default value evaluate result: ""
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Input 'ecr': default value evaluate result: ""
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Input 'scope': default value evaluate result: ""
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Input 'logout': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 27,
+  "col": 14,
+  "lit": "true"
+}
+[2026-04-08 06:21:16Z INFO ActionManifestManagerLegacy] Input 'registry-auth': default value evaluate result: ""
+[2026-04-08 06:21:16Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.InternalPluginSetRepoPathCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetEnvCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SetOutputCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.SaveStateCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddPathCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMaskCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.AddMatcherCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.RemoveMatcherCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.WarningCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.ErrorCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.NoticeCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.DebugCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.GroupCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EndGroupCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ExtensionManager] Creating instance: GitHub.Runner.Worker.EchoCommandExtension, Runner.Worker
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-08 06:21:16Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:16Z INFO HostContext] Well known directory 'Externals': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\externals'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   File name: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\externals\node20\bin\node.exe'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Arguments: '"C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions\docker\login-action\v3\dist/index.js"'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\HW2\HW2'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Encoding web name: utf-8 ; code page: '65001'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:21:16Z INFO ProcessInvokerWrapper] Process started with process id 2928, waiting for process exit.
+[2026-04-08 06:21:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record '1a055cea-be88-45ec-ba73-75d7822bd9f9', success rate: 1/1.
+[2026-04-08 06:21:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record '58aaba5e-64ee-4e0f-9b90-2c0a4288ac5c', success rate: 1/1.
+[2026-04-08 06:21:16Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:21:16Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_1a055cea-be88-45ec-ba73-75d7822bd9f9.1
+[2026-04-08 06:21:16Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2026-04-08 06:21:16Z INFO JobServerQueue] Try to append 1 batches web console lines for record '58aaba5e-64ee-4e0f-9b90-2c0a4288ac5c', success rate: 1/1.
+[2026-04-08 06:21:18Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] Finished process 2928 with exit code 0, and elapsed time 00:00:03.6089061.
+[2026-04-08 06:21:19Z INFO JobServerQueue] Try to append 1 batches web console lines for record '58aaba5e-64ee-4e0f-9b90-2c0a4288ac5c', success rate: 1/1.
+[2026-04-08 06:21:19Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_runner_file_commands\step_summary_4d73d3c1-f4cf-4384-a662-7bee47880dd7) is empty; skipping attachment upload
+[2026-04-08 06:21:19Z INFO StepsRunner] Step result: 
+[2026-04-08 06:21:19Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "docker/login-action",
+  "ref": "v3",
+  "type": "node20",
+  "stage": "Main",
+  "stepId": "58aaba5e-64ee-4e0f-9b90-2c0a4288ac5c",
+  "stepContextName": "__docker_login-action",
+  "hasPreStep": false,
+  "hasPostStep": true,
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 4,
+  "startTime": "2026-04-08T06:21:16.0716103Z",
+  "finishTime": "2026-04-08T06:21:19.8192411Z"
+}.
+[2026-04-08 06:21:19Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-08 06:21:19Z INFO StepsRunner] Current state: job state = ''
+[2026-04-08 06:21:19Z INFO StepsRunner] Processing step: DisplayName='Pull Latest Docker Image'
+[2026-04-08 06:21:19Z INFO StepsRunner] Evaluating: success()
+[2026-04-08 06:21:19Z INFO StepsRunner] Result: true
+[2026-04-08 06:21:19Z INFO StepsRunner] Starting the step.
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:19Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-08 06:21:19Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] Process started with process id 29780, waiting for process exit.
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] Finished process 29780 with exit code 0, and elapsed time 00:00:00.0132854.
+[2026-04-08 06:21:19Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:21:19Z INFO ExecutionContext] Write event payload to C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:21:19Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-08 06:21:19Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-08 06:21:19Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-08 06:21:19Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:21:19Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:21:19Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:21:19Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:21:19Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:19Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:21:19Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:21:19Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:21:19Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:21:19Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:21:19Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\41da231b-40c9-4958-a6d3-331d8599ac7b.ps1'"'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\HW2\HW2'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:21:19Z INFO ProcessInvokerWrapper] Process started with process id 13664, waiting for process exit.
+[2026-04-08 06:21:20Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:21:20Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_58aaba5e-64ee-4e0f-9b90-2c0a4288ac5c.1
+[2026-04-08 06:21:20Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:21:20Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2026-04-08 06:21:20Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2026-04-08 06:21:23Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:21:25Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:21:26Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:26Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:26Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:26Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:21:36Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:36Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:36Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:46Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:46Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:46Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:21:56Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:21:56Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:21:56Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:06Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:06Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:06Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:14Z INFO JobServerQueue] Stop aggressive process web console line queue.
+[2026-04-08 06:22:16Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:16Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:16Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:26Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:26Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:26Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:36Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:36Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:36Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:36Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:22:37Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:22:39Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:22:42Z INFO JobServerQueue] Try to append 1 batches web console lines for record '5d6ae1e0-3b77-47a0-ae13-e9f800f7572e', success rate: 1/1.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Finished process 13664 with exit code 0, and elapsed time 00:01:23.1855791.
+[2026-04-08 06:22:43Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_runner_file_commands\step_summary_acefefac-d393-4207-b518-7208a0fa50b0) is empty; skipping attachment upload
+[2026-04-08 06:22:43Z INFO StepsRunner] Step result: 
+[2026-04-08 06:22:43Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "5d6ae1e0-3b77-47a0-ae13-e9f800f7572e",
+  "stepContextName": "__run",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 84,
+  "startTime": "2026-04-08T06:21:19.8206437Z",
+  "finishTime": "2026-04-08T06:22:43.0703064Z"
+}.
+[2026-04-08 06:22:43Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-08 06:22:43Z INFO StepsRunner] Current state: job state = ''
+[2026-04-08 06:22:43Z INFO StepsRunner] Processing step: DisplayName='Stop Existing Container'
+[2026-04-08 06:22:43Z INFO StepsRunner] Evaluating: success()
+[2026-04-08 06:22:43Z INFO StepsRunner] Result: true
+[2026-04-08 06:22:43Z INFO StepsRunner] Starting the step.
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-08 06:22:43Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Process started with process id 28956, waiting for process exit.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Finished process 28956 with exit code 0, and elapsed time 00:00:00.0194089.
+[2026-04-08 06:22:43Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:43Z INFO ExecutionContext] Write event payload to C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:43Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-08 06:22:43Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:22:43Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:22:43Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:22:43Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:22:43Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:22:43Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:22:43Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:22:43Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\2e4ac7ec-545b-42d0-a788-05c4a85a444b.ps1'"'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\HW2\HW2'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Process started with process id 13476, waiting for process exit.
+[2026-04-08 06:22:43Z INFO JobServerQueue] Try to append 1 batches web console lines for record '93371c68-5483-4dc2-9270-e62f61b800ff', success rate: 1/1.
+[2026-04-08 06:22:43Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:22:43Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_5d6ae1e0-3b77-47a0-ae13-e9f800f7572e.1
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Finished process 13476 with exit code 0, and elapsed time 00:00:00.4364830.
+[2026-04-08 06:22:43Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_runner_file_commands\step_summary_8301cfa7-a76a-4c86-adc0-7410e8e5cd9a) is empty; skipping attachment upload
+[2026-04-08 06:22:43Z INFO StepsRunner] Step result: 
+[2026-04-08 06:22:43Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "93371c68-5483-4dc2-9270-e62f61b800ff",
+  "stepContextName": "__run_2",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-08T06:22:43.0719509Z",
+  "finishTime": "2026-04-08T06:22:43.5773606Z"
+}.
+[2026-04-08 06:22:43Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-08 06:22:43Z INFO StepsRunner] Current state: job state = ''
+[2026-04-08 06:22:43Z INFO StepsRunner] Processing step: DisplayName='Remove Existing Container'
+[2026-04-08 06:22:43Z INFO StepsRunner] Evaluating: success()
+[2026-04-08 06:22:43Z INFO StepsRunner] Result: true
+[2026-04-08 06:22:43Z INFO StepsRunner] Starting the step.
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-08 06:22:43Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Process started with process id 7496, waiting for process exit.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Finished process 7496 with exit code 0, and elapsed time 00:00:00.0128958.
+[2026-04-08 06:22:43Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:43Z INFO ExecutionContext] Write event payload to C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:43Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-08 06:22:43Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-08 06:22:43Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:22:43Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:22:43Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:22:43Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:43Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:22:43Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:22:43Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:22:43Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:22:43Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\5845cdba-41fc-47ce-8166-27538caa3da4.ps1'"'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\HW2\HW2'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:43Z INFO ProcessInvokerWrapper] Process started with process id 26948, waiting for process exit.
+[2026-04-08 06:22:43Z INFO JobServerQueue] Try to append 1 batches web console lines for record '93371c68-5483-4dc2-9270-e62f61b800ff', success rate: 1/1.
+[2026-04-08 06:22:43Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'fcd62955-6045-48e3-b10c-9d4b8c6843c6', success rate: 1/1.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Finished process 26948 with exit code 0, and elapsed time 00:00:00.4121027.
+[2026-04-08 06:22:44Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_runner_file_commands\step_summary_7cf384b3-2463-4d82-8a22-70e5c019c9b1) is empty; skipping attachment upload
+[2026-04-08 06:22:44Z INFO StepsRunner] Step result: 
+[2026-04-08 06:22:44Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "fcd62955-6045-48e3-b10c-9d4b8c6843c6",
+  "stepContextName": "__run_3",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-08T06:22:43.5807446Z",
+  "finishTime": "2026-04-08T06:22:44.0553023Z"
+}.
+[2026-04-08 06:22:44Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-08 06:22:44Z INFO StepsRunner] Current state: job state = ''
+[2026-04-08 06:22:44Z INFO StepsRunner] Processing step: DisplayName='Run New Container'
+[2026-04-08 06:22:44Z INFO StepsRunner] Evaluating: success()
+[2026-04-08 06:22:44Z INFO StepsRunner] Result: true
+[2026-04-08 06:22:44Z INFO StepsRunner] Starting the step.
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-08 06:22:44Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Process started with process id 30776, waiting for process exit.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Finished process 30776 with exit code 0, and elapsed time 00:00:00.0122643.
+[2026-04-08 06:22:44Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:44Z INFO ExecutionContext] Write event payload to C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:44Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-08 06:22:44Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-08 06:22:44Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:22:44Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:22:44Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:22:44Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:22:44Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:44Z INFO ScriptHandler] Which2: 'pwsh'
+[2026-04-08 06:22:44Z INFO ScriptHandler] pwsh: command not found. Make sure 'pwsh' is installed and its location included in the 'Path' environment variable.
+[2026-04-08 06:22:44Z INFO ScriptHandler] Defaulting to powershell
+[2026-04-08 06:22:44Z INFO ScriptHandler] Which2: 'powershell'
+[2026-04-08 06:22:44Z INFO ScriptHandler] Location: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Arguments: '-command ". 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\0b663f8a-3dcf-486a-b3ad-fc17316ee48f.ps1'"'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\HW2\HW2'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Process started with process id 31700, waiting for process exit.
+[2026-04-08 06:22:44Z INFO JobServerQueue] Try to upload 2 log files or attachments, success rate: 2/2.
+[2026-04-08 06:22:44Z INFO JobServerQueue] Try to append 1 batches web console lines for record '88d2023c-0822-4e6f-a814-ff37a5b7436d', success rate: 1/1.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Finished process 31700 with exit code 0, and elapsed time 00:00:00.7779414.
+[2026-04-08 06:22:44Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_runner_file_commands\step_summary_dcd62456-0bbb-4521-96d0-a531959e3aa5) is empty; skipping attachment upload
+[2026-04-08 06:22:44Z INFO StepsRunner] Step result: 
+[2026-04-08 06:22:44Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "powershell",
+  "type": "run",
+  "stage": "Main",
+  "stepId": "88d2023c-0822-4e6f-a814-ff37a5b7436d",
+  "stepContextName": "__run_4",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-08T06:22:44.0567271Z",
+  "finishTime": "2026-04-08T06:22:44.8880576Z"
+}.
+[2026-04-08 06:22:44Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-08 06:22:44Z INFO StepsRunner] Current state: job state = ''
+[2026-04-08 06:22:44Z INFO StepsRunner] Processing step: DisplayName='Post Login to Docker Hub'
+[2026-04-08 06:22:44Z INFO StepsRunner] Evaluating: always()
+[2026-04-08 06:22:44Z INFO StepsRunner] Result: true
+[2026-04-08 06:22:44Z INFO StepsRunner] Starting the step.
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO StepsRunner] Which2: 'chcp'
+[2026-04-08 06:22:44Z INFO StepsRunner] Location: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   File name: 'C:\WINDOWS\system32\chcp.COM'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Arguments: '65001'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Process started with process id 30964, waiting for process exit.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Finished process 30964 with exit code 0, and elapsed time 00:00:00.0121598.
+[2026-04-08 06:22:44Z INFO StepsRunner] Successfully returned to code page 65001 (UTF8)
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:22:44Z INFO ActionManager] Load action that reference repository from 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions\docker\login-action\v3'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Actions': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions'
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Ignore action property author.
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Ignore action property branding.
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Loaded action.yml file: {
+  "name": "Docker Login",
+  "description": "GitHub Action to login against a Docker registry",
+  "inputs": {
+    "type": 2,
+    "map": [
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 10,
+          "col": 3,
+          "lit": "registry"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 13,
+          "col": 3,
+          "lit": "username"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 16,
+          "col": 3,
+          "lit": "password"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 19,
+          "col": 3,
+          "lit": "ecr"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 22,
+          "col": 3,
+          "lit": "scope"
+        },
+        "value": ""
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 25,
+          "col": 3,
+          "lit": "logout"
+        },
+        "value": {
+          "type": 0,
+          "file": 2,
+          "line": 27,
+          "col": 14,
+          "lit": "true"
+        }
+      },
+      {
+        "key": {
+          "type": 0,
+          "file": 2,
+          "line": 29,
+          "col": 3,
+          "lit": "registry-auth"
+        },
+        "value": ""
+      }
+    ]
+  },
+  "execution": {
+    "executionType": "nodeJS",
+    "hasPre": false,
+    "hasPost": true,
+    "script": "dist/index.js",
+    "pre": null,
+    "post": "dist/index.js",
+    "nodeVersion": "node20",
+    "cleanupCondition": "always()",
+    "initCondition": "always()"
+  },
+  "deprecated": null
+}
+[2026-04-08 06:22:44Z INFO ActionManager] Action pre node.js file: N/A.
+[2026-04-08 06:22:44Z INFO ActionManager] Action node.js file: dist/index.js.
+[2026-04-08 06:22:44Z INFO ActionManager] Action post node.js file: dist/index.js.
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:44Z INFO ExecutionContext] Write event payload to C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_github_workflow\event.json
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Temp': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp'
+[2026-04-08 06:22:44Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IFileCommandExtension'
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Input 'registry': default value evaluate result: ""
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Input 'ecr': default value evaluate result: ""
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Input 'scope': default value evaluate result: ""
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Input 'logout': default value evaluate result: {
+  "type": 0,
+  "file": 2,
+  "line": 27,
+  "col": 14,
+  "lit": "true"
+}
+[2026-04-08 06:22:44Z INFO ActionManifestManagerLegacy] Input 'registry-auth': default value evaluate result: ""
+[2026-04-08 06:22:44Z INFO ExtensionManager] Getting extensions for interface: 'GitHub.Runner.Worker.IActionCommandExtension'
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command internal-set-repo-path
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command set-env
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command set-output
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command save-state
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command add-path
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command add-mask
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command add-matcher
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command remove-matcher
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command warning
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command error
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command notice
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command debug
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command group
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command endgroup
+[2026-04-08 06:22:44Z INFO ActionCommandManager] Register action command extension for command echo
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:44Z INFO HostContext] Well known directory 'Externals': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\externals'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Starting process:
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   File name: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\externals\node20\bin\node.exe'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Arguments: '"C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_actions\docker\login-action\v3\dist/index.js"'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Working directory: 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\HW2\HW2'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Encoding web name: utf-8 ; code page: '65001'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Persist current code page: 'True'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper]   High priority process: 'False'
+[2026-04-08 06:22:44Z INFO ProcessInvokerWrapper] Process started with process id 31452, waiting for process exit.
+[2026-04-08 06:22:44Z INFO JobServerQueue] Try to append 1 batches web console lines for record '88d2023c-0822-4e6f-a814-ff37a5b7436d', success rate: 1/1.
+[2026-04-08 06:22:44Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'ab0942c9-d24b-4147-9b42-8767a3cca0be', success rate: 1/1.
+[2026-04-08 06:22:45Z INFO JobServerQueue] Try to upload 1 log files or attachments, success rate: 1/1.
+[2026-04-08 06:22:45Z INFO JobServerQueue] Tried to upload 1 file(s) to results, success rate: 1/1.
+[2026-04-08 06:22:45Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'ab0942c9-d24b-4147-9b42-8767a3cca0be', success rate: 1/1.
+[2026-04-08 06:22:46Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:46Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:46Z INFO HostContext] Well known directory 'Work': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work'
+[2026-04-08 06:22:46Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:22:46Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_93371c68-5483-4dc2-9270-e62f61b800ff.1
+[2026-04-08 06:22:47Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:22:47Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_fcd62955-6045-48e3-b10c-9d4b8c6843c6.1
+[2026-04-08 06:22:47Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:22:47Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_88d2023c-0822-4e6f-a814-ff37a5b7436d.1
+[2026-04-08 06:22:48Z INFO JobServerQueue] Tried to upload 3 file(s) to results, success rate: 3/3.
+[2026-04-08 06:22:49Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:49Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2026-04-08 06:22:49Z INFO ProcessInvokerWrapper] Finished process 31452 with exit code 0, and elapsed time 00:00:04.8352303.
+[2026-04-08 06:22:49Z INFO CreateStepSummaryCommand] Step Summary file (C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp\_runner_file_commands\step_summary_ba828d92-8ee0-48cd-b205-fc75b1e89419) is empty; skipping attachment upload
+[2026-04-08 06:22:49Z INFO StepsRunner] Step result: 
+[2026-04-08 06:22:49Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "docker/login-action",
+  "ref": "v3",
+  "type": "node20",
+  "stage": "Post",
+  "stepId": "ab0942c9-d24b-4147-9b42-8767a3cca0be",
+  "result": "succeeded",
+  "errorMessages": [],
+  "executionTimeInSeconds": 5,
+  "startTime": "2026-04-08T06:22:44.8897534Z",
+  "finishTime": "2026-04-08T06:22:49.755334Z"
+}.
+[2026-04-08 06:22:49Z INFO StepsRunner] No need for updating job result with current step result 'Succeeded'.
+[2026-04-08 06:22:49Z INFO StepsRunner] Current state: job state = ''
+[2026-04-08 06:22:49Z INFO JobRunner] Finalize job.
+[2026-04-08 06:22:49Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:49Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:49Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:22:49Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:49Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:49Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:22:49Z INFO JobExtension] Initialize Env context
+[2026-04-08 06:22:49Z INFO JobExtension] Initialize steps context
+[2026-04-08 06:22:49Z INFO JobExtension] Total accessible running process: 354.
+[2026-04-08 06:22:49Z INFO JobExtension] Inspecting process environment variables. PID: 7160 (svchost)
+[2026-04-08 06:22:49Z WARN JobExtension] Ignore exception during read process environment variables: 액세스가 거부되었습니다.
+[2026-04-08 06:22:49Z INFO JobExtension] Inspecting process environment variables. PID: 20212 (svchost)
+[2026-04-08 06:22:49Z WARN JobExtension] Ignore exception during read process environment variables: 액세스가 거부되었습니다.
+[2026-04-08 06:22:49Z INFO JobExtension] Inspecting process environment variables. PID: 29956 (svchost)
+[2026-04-08 06:22:49Z INFO JobExtension] Inspecting process environment variables. PID: 31780 (audiodg)
+[2026-04-08 06:22:49Z WARN JobExtension] Ignore exception during read process environment variables: 액세스가 거부되었습니다.
+[2026-04-08 06:22:49Z INFO JobExtension] Inspecting process environment variables. PID: 11312 (svchost)
+[2026-04-08 06:22:49Z WARN JobExtension] Ignore exception during read process environment variables: 액세스가 거부되었습니다.
+[2026-04-08 06:22:49Z INFO JobExtension] Inspecting process environment variables. PID: 7732 (svchost)
+[2026-04-08 06:22:49Z WARN JobExtension] Ignore exception during read process environment variables: 액세스가 거부되었습니다.
+[2026-04-08 06:22:49Z INFO JobExtension] Wait for all connectivity checks to finish.
+[2026-04-08 06:22:49Z INFO JobExtension] Connectivity check result: GitHub.Runner.Worker.JobExtension+CheckResult
+[2026-04-08 06:22:49Z INFO JobExtension] Connectivity check result: GitHub.Runner.Worker.JobExtension+CheckResult
+[2026-04-08 06:22:49Z INFO JobExtension] Connectivity check result: GitHub.Runner.Worker.JobExtension+CheckResult
+[2026-04-08 06:22:49Z INFO ExecutionContext] Publish step telemetry for current step {
+  "action": "complete_job",
+  "type": "runner",
+  "stage": "Post",
+  "stepId": "bcfd1b09-525e-498e-a083-8d8ecd538fa8",
+  "result": "succeeded",
+  "errorMessages": [
+    "Node.js 20 actions are deprecated. The following actions are running on Node.js 20 and may not work as expected: docker/login-action@v3. Actions will be forced to run with Node.js 24 by default starting June 2nd, 2026. Node.js 20 will be removed from the r"
+  ],
+  "executionTimeInSeconds": 1,
+  "startTime": "2026-04-08T06:22:49.7610573Z",
+  "finishTime": "2026-04-08T06:22:49.8092507Z"
+}.
+[2026-04-08 06:22:49Z INFO JobRunner] Job result after all job steps finish: Succeeded
+[2026-04-08 06:22:49Z INFO JobRunner] Completing the job execution context.
+[2026-04-08 06:22:49Z INFO JobRunner] Shutting down the job server queue.
+[2026-04-08 06:22:49Z INFO JobServerQueue] Fire signal to shutdown all queues.
+[2026-04-08 06:22:50Z INFO JobServerQueue] All queue process task stopped.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'ab0942c9-d24b-4147-9b42-8767a3cca0be', success rate: 1/1.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Try to append 1 batches web console lines for record 'bcfd1b09-525e-498e-a083-8d8ecd538fa8', success rate: 1/1.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Web console line queue drained.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Uploading 3 files in one shot.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Try to upload 3 log files or attachments, success rate: 3/3.
+[2026-04-08 06:22:50Z INFO JobServerQueue] File upload queue drained.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Starting results-based upload queue...
+[2026-04-08 06:22:50Z INFO JobServerQueue] Uploading 3 file(s) in one shot through results service.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:22:50Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_ab0942c9-d24b-4147-9b42-8767a3cca0be.1
+[2026-04-08 06:22:51Z INFO JobServerQueue] Got a step log file to send to results service.
+[2026-04-08 06:22:51Z INFO JobServerQueue] Starting upload of step log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_bcfd1b09-525e-498e-a083-8d8ecd538fa8.1
+[2026-04-08 06:22:52Z INFO JobServerQueue] Got a job log file to send to results service.
+[2026-04-08 06:22:52Z INFO JobServerQueue] Starting upload of job log file to results service ResultsLog, C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\blocks\67ee15c8-a312-41ba-ba40-db4908e76e88_065412f9-b3bd-5418-bbec-e1ff97640e4a.1
+[2026-04-08 06:22:53Z INFO JobServerQueue] Tried to upload 3 file(s) to results, success rate: 3/3.
+[2026-04-08 06:22:53Z INFO JobServerQueue] Results upload queue drained.
+[2026-04-08 06:22:53Z INFO JobServerQueue] Timeline update queue drained.
+[2026-04-08 06:22:53Z INFO JobServerQueue] Disposing job server ...
+[2026-04-08 06:22:53Z INFO JobServerQueue] Disposing results server ...
+[2026-04-08 06:22:53Z INFO JobServerQueue] All queue process tasks have been stopped, and all queues are drained.
+[2026-04-08 06:22:53Z INFO TempDirectoryManager] Cleaning runner temp folder: C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_work\_temp
+[2026-04-08 06:22:53Z INFO HostContext] Well known directory 'Bin': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\bin'
+[2026-04-08 06:22:53Z INFO HostContext] Well known directory 'Root': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner'
+[2026-04-08 06:22:53Z INFO HostContext] Well known directory 'Diag': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag'
+[2026-04-08 06:22:53Z INFO HostContext] Well known config file 'Telemetry': 'C:\Users\maple\OneDrive\바탕 화면\VIVECODING\HW2\actions-runner\_diag\.telemetry'
+[2026-04-08 06:22:53Z INFO JobRunner] Raising job completed against run service
+[2026-04-08 06:22:54Z INFO Worker] Job completed.

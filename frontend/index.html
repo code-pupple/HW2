@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushroom AI Classifier</title>
+    <!-- 모던 폰트 (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-container">
+        <header>
+            <h1>Mushroom AI</h1>
+            <p>스마트한 버섯 인식 API & MLOps 시스템</p>
+        </header>
+        
+        <div class="upload-zone" id="dropZone">
+            <div class="upload-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            </div>
+            <h3>버섯 사진을 드래그 앤 드롭 하세요</h3>
+            <p>또는 클릭하여 내 PC에서 사진 업로드</p>
+            <input type="file" id="fileInput" accept="image/*" hidden>
+        </div>
+
+        <div class="preview-area" id="previewArea" style="display: none;">
+            <img id="imagePreview" alt="업로드 이미지 미리보기">
+            <button id="resetBtn" class="btn">다른 사진 분석하기</button>
+        </div>
+        
+        <div class="loading-area" id="loadingArea" style="display: none;">
+            <div class="spinner"></div>
+            <p>AI가 버섯을 식별하고 있습니다...</p>
+        </div>
+
+        <div class="result-area" id="resultArea" style="display: none;">
+            <p class="result-subtitle">판별된 모델 결과:</p>
+            <h2 id="resultTitle">-</h2>
+            <div class="confidence-bar">
+                <div class="confidence-fill" id="confidenceFill"></div>
+            </div>
+            <p class="confidence-text" id="confidenceText"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
