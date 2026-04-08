@@ -19,7 +19,7 @@ WORKDIR /app
 # 시스템 의존성 설치 밑 패키지 캐시 즉시 제거 (도커 이미지 레이어 크기 축소 핵심)
 # --no-install-recommends 로 불필요한 부가 패키지 설치 차단
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1-mesa-glx \
+    libgl1 \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
